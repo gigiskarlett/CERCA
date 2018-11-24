@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Cerca, explore the world around you</title>
+   <!-- Responsive viewport tag, tells small screens that it's responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Metadata -->
+    <meta name="Cerca" content="Search for popular places near you or around the world and get uber estimates to get there">
+
+    <!-- Stylesheets -->
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="button-style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <main role="main">
+
+      <header class="header">
+        <h1>Cerca</h1>
+      </header>
+
+      <div class="container">
+        <section>
+          <div class="landing-img">
+            <h2>Explore popular places near you or around the world</h2>
+            <p class="details"> For best results we recommend rearching for city and country or city and state ( e.g. Los Angeles, USA / Los Angeles, CA)</p>
+            <p class="js-error-message"></p>
+            <form action="#" id="landing-page-form" class="js-form form">
+
+                <legend hidden>Explore popular places near you or around the world</legend>
+
+                <label for="place-query"></label>
+                <input type="text" id="landing-place-query" name="landing-place-query" class="js-type-query search-type" placeholder="What you want to find here...">
+
+                <label for="address-query"></label>
+                <input required type="text" id="landing-address-query" name="landing-address-query" class="js-origin-query search-address" placeholder="Type your address here...">
+                
+              <button type="submit" class="button btn-hover">Explore!</button>
+
+            </form>
+          </div>
+        </section>
+
+        <section class="about-us">
+          <div class="section-container">
+            <img class="img mobile left" src="https://image.ibb.co/c4kqSA/pexels-photo-849835.jpg" alt="car-in-snow">
+            <h3 class="section-title right">Don't let the weather surprise you!</h3>
+            <div class="text right">
+              <p class="description-of-image">We know how bad it is when you get surprised by unexpected weather so we made sure to provide you with the weather prognostic for the venue selected</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </section>
+
+        <section class="about-us">
+          <div class="section-container">
+            <img class="img mobile right" src="https://image.ibb.co/cR0Fcq/pexels-photo-1268551.jpg" alt="plate-of-food">
+            <h3 class="section-title left">Explore your neighborhood!</h3>
+            <div class="text left">
+              <p class="description-of-image">Search for restaurants and enter your address and discover popular restaurants near you</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </section>
+
+        <section class="about-us">
+          <div class="section-container">
+            <img class="img mobile left" src="https://image.ibb.co/fqD1Hq/pexels-photo-1531672.jpg" alt="spa">
+            <h3 class="section-title right">Plan your travels</h3>
+            <div class="text right">
+              <p class="description-of-image">Find a relaxing spa near your hotel by entering spa and your hotel address</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </section>
+
+        <section class="about-us">
+
+          <div class="section-container last-container">
+
+            <img class="img mobile right" src="https://image.ibb.co/d7uxqA/pexels-photo-1134166.jpg" alt="dark-street">
+            <h3 class="section-title left">Flying international?</h3>
+            <div class="text left">
+              <p class="description-of-image">No matter where you are we will always have your back! Search local or internationally and we’ll make sure to get you the most popular places every time</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </section>
+      </div>
+
+      <section id="search-modal" hidden>
+        <div class="popup-overlay"></div>
+        <div class="popup-content"></div>
+      </section>
+
+      <section id="map-section" hidden>
+          <div id="map" ></div>
+      </section>
+
+      <div id="sidebar" hidden>
+        <button id="show-hide" >X</button>
+        <div class="results-search-background">
+          <h3 class="results-search-tittle">Explore popular places near you or around the world</h3>
+
+          <form role="form" action="#" id="results-page-form" class="js-form form-sidebar form">
+
+              <legend hidden>Explore popular places near you or around the world</legend>
+
+              <label for="place-query"></label>
+              <input type="text" id="results-place-query" name="results-place-query" class="js-type-query search-type-sidebar" placeholder="What you want to find here...">
+
+              <label for="address-query"></label>
+              <input required type="text" id="results-address-query" name="results-address-query" class="js-origin-query search-address-sidebar" placeholder="Type your address here...">
+
+            <button type="submit" class="button js-sidebar-submit btn-hover">Explore!</button>
+          </form>
+        </div>
+        <div id="search-results"></div>
+      </div>
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSjog9A6AI8KRv_qUxop-RinLu0CluBWs&callback=initMap"></script>
+  </body>
+</html>
