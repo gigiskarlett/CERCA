@@ -324,6 +324,7 @@
   
   .popup-name {
     padding-bottom: 10px;
+    color:  #383A3B;
   }
   
   
@@ -333,6 +334,7 @@
     font-size: 12px;
     padding-bottom: 10px;
     font-weight: bold;
+    color: #383A3B;
   }
   
   .details {
@@ -351,6 +353,7 @@
     left: -8px;
     font-size: 15px;
     text-align: center; 
+    color: #383A3B;
   }
   
   .temperature-tittle {
@@ -359,6 +362,7 @@
     left: -8px;
     font-size: 18px;
     text-align: center; 
+    color: #383A3B;
   }
   
   .weather-description {
@@ -368,6 +372,7 @@
     text-align: center;
     font-size: 15px;
     left: -8px;
+    color: #383A3B;
   }
   
   .js-error-message {
