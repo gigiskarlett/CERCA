@@ -160,7 +160,7 @@ function renderSidebarvenue(venue, index, imgURL) {
   <h3 class="venue-name">${venue.venue.name}</h3>
   </a>
   <div class="venue-img-container">
-  <img class="venue-img" id="image-${venue.venue.id}" src="${imgURL}">
+  <img class="venue-img" id="image-${venue.venue.id}" src="${imgURL}" alt="image-of-venue">
   </div>
   <p class="address">${venue.venue.location.formattedAddress}</p>
   </section>`;
@@ -257,7 +257,7 @@ function markerHover() {
 function displaySelectedModal() {
   $(".popup-content").html(`
     <h3 class="popup-name">${state.selectedVenue.name}</h2>
-    <img class="venue-img" id="image-{venue.venue.id}" src="${state.imageURL}">
+    <img class="venue-img" id="image-{venue.venue.id}" src="${state.imageURL}" alt="selected-venue-image">
     <p class="popup-address">${state.selectedVenue.location.formattedAddress}</p>
     <div id="cloud-background">
       <h4 class="temperature-tittle">Weather</h4>
