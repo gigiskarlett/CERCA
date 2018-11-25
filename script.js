@@ -47,7 +47,6 @@ function fetchLocationData() {
   
   const geoCodingQueryString = formatGeoCodingParams(geoCodingParams)
   const geoUrl = geoCodingUrl + '?' + geoCodingQueryString;
-  console.log('geoUrl: ', geoUrl);
 
   fetch(geoUrl)
   .then(response => response.json())
@@ -109,7 +108,6 @@ function getVenueImage(venueID, index) {
   fetch(url)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     let img = data.response.photos.items[0];
     let imgURL = `${img.prefix}300x300${img.suffix}`;
     $(`#image-${venueID}`).attr("src", imgURL);
@@ -121,7 +119,7 @@ function getVenueImage(venueID, index) {
 }
 
 
-//formata geocoding params
+//formats geocoding parameters
 function formatGeoCodingParams(geoCodingParams) {
   const geoCodingQueryItems = Object.keys(geoCodingParams)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(geoCodingParams[key])}`)
@@ -147,7 +145,7 @@ function initMap() {
   bounds  = new google.maps.LatLngBounds();
 }
 
-
+//Format query parameters
 function formatQueryParamsPlaces(params) {
   const queryvenues = Object.keys(params).map(
     key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
@@ -155,6 +153,7 @@ function formatQueryParamsPlaces(params) {
   return queryvenues.join("&");
 }
 
+//Creates side bar with search results
 function renderSidebarvenue(venue, index, imgURL) {
   return `<section class="result js-result" data-index=${index}>
   <a href=# class="js-venue-name">
@@ -167,6 +166,7 @@ function renderSidebarvenue(venue, index, imgURL) {
   </section>`;
 }
 
+//Set google map markers for venues
 function setvenueMarker(venue, index) {
   var venueLocation = new google.maps.LatLng(
     venue.venue.location.lat,
@@ -189,6 +189,7 @@ function setvenueMarker(venue, index) {
   })
 }
 
+//Displays search results 
 function displayResults() {
   $(".container").hide();
   $("#map-section").show();
@@ -206,7 +207,7 @@ function displayResults() {
   $("#search-results").html(renderedvenues);
 }
 
-
+//makes sidebar hide and unhide on click of button
 function toggleSidebar() {
   $("#show-hide").click(function() {
     var currentStyle = $("#sidebar").css("width");
@@ -220,14 +221,14 @@ function toggleSidebar() {
   });
 }
 
-
+//closes modal 
 function closeModal() {
   $(".popup-overlay").click(function(event) {
     $("#search-modal").hide();
   });
 }
 
-
+//adds animation when hovering over venue on sidebar
 function markerHover() {
   $("#search-results").on("mouseover", ".result", function(e) {
     var index = $(this).attr("data-index");
@@ -252,8 +253,8 @@ function markerHover() {
   });
 }
 
+//Displays modal when user clicks on venue
 function displaySelectedModal() {
-  console.log('STATESTATE: ', state);
   $(".popup-content").html(`
     <h3 class="popup-name">${state.selectedVenue.name}</h2>
     <img class="venue-img" id="image-{venue.venue.id}" src="${state.imageURL}">
@@ -267,8 +268,8 @@ function displaySelectedModal() {
   $("#search-modal").show();
 }
 
+//gets lat and long from selected venue and formats address to lat and long
 const fetchSelectedVenue = () => {
-  console.log('state.selectedVenue.location.formattedAddress', state.selectedVenue.location.formattedAddress);
   const geoCodingParams = {
     key: geoCodingClientKey,
     address: state.selectedVenue.location.formattedAddress
@@ -276,14 +277,13 @@ const fetchSelectedVenue = () => {
   
   const geoCodingQueryString = formatGeoCodingParams(geoCodingParams)
   const geoUrl = geoCodingUrl + '?' + geoCodingQueryString;
-  console.log('geoUrl: ', geoUrl);
 
   fetch(geoUrl)
   .then(response => response.json())
   .then(geoCodingResponseJson => {
     state.location.lat = geoCodingResponseJson.results[0].geometry.location.lat;
     state.location.lng = geoCodingResponseJson.results[0].geometry.location.lng;
-    console.log(state);
+
     
     return fetchWeatherData();
   })
@@ -315,6 +315,7 @@ const fetchVenues = (maxResults = 10) => {
     });
 }
 
+//retrieves information on selected venue 
 const handleSearchResultsClick = () => {
   $("#search-results").on("click", ".result", function(event) {
     event.preventDefault();
@@ -328,6 +329,7 @@ const handleSearchResultsClick = () => {
   });
 }
 
+//listens for search submit on side bar
 const handleResultsPageFormSubmit = () => {
   $("#results-page-form").submit(event => {
     event.preventDefault();
@@ -339,6 +341,7 @@ const handleResultsPageFormSubmit = () => {
   });
 }
 
+//listens for search submit on landing page
 const handleLandingPageFormSubmit = () => {
   $("#landing-page-form").submit(event => {
     event.preventDefault();
@@ -350,6 +353,7 @@ const handleLandingPageFormSubmit = () => {
   });
 }
 
+//binds event handlers
 const bindEventHandlers = () => {
   handleLandingPageFormSubmit();
   handleResultsPageFormSubmit();
