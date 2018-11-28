@@ -34,97 +34,25 @@ let state = {
   weatherJson: {},
 };
 
-//calls FetchLocationData
-function fetchApiData() {
-    fetchLocationData();
-}
-//converts inputed address into lat and long
-function fetchLocationData() {
-  const geoCodingParams = {
-    key: geoCodingClientKey,
-    address: state.query.address
-  };
-  
-  const geoCodingQueryString = formatGeoCodingParams(geoCodingParams)
-  const geoUrl = geoCodingUrl + '?' + geoCodingQueryString;
+/////////////////////////////////////////////////////////
 
-  fetch(geoUrl)
-  .then(response => response.json())
-  .then(geoCodingResponseJson => {
-    state.location.lat = geoCodingResponseJson.results[0].geometry.location.lat;
-    state.location.lng = geoCodingResponseJson.results[0].geometry.location.lng;
-    console.log(state);
-    
-    return fetchWeatherData();
-  })
-  .then(results => fetchPlacesData())
-  .then(results => displayResults())
-  .catch(error => alert(error));
-}
-//fetches weather data
-function fetchWeatherData() {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${state.location.lat}&lon=${state.location.lng}&units=imperial&appid=c1030d35c644039241e355758547f2ec`) 
-  .then(response => response.json())
-  .then(responseJson => {
-    state.weatherJson = responseJson;
-  })
+$(() => {
+  bindEventHandlers();  
+});
+
+//binds event handlers
+const bindEventHandlers = () => {
+  handleLandingPageFormSubmit();
+  handleResultsPageFormSubmit();
+  handleSearchResultsClick();
+
+  toggleSidebar();
+  closeModal();
+  markerHover();
+  removeMarkers();
 }
 
-//fetches venues in place inputed
-function fetchPlacesData(maxResults = 10) {
-  const params = {
-    query: state.query.place,
-    near: state.query.address,
-    v: versionApi,
-    client_id: clientId,
-    client_secret: clientSecret,
-    limit: maxResults
-  };
-  const queryString = formatQueryParamsPlaces(params);
-  const url = venueSearchURL + "?" + queryString;
-
-  return fetch(url)
-    .then(response => response.json())
-    .then(responseJson => {
-      return responseJson;
-    })
-    .then(responseJson => state.venues = responseJson.response.groups[0].items)
-    .catch(err => {
-      $('.js-error-message').html("Whoops! We currently don't have anything available for your search. Please try another search.");
-    });
-}
-
-//Retrieves image for venue
-function getVenueImage(venueID, index) {
-  const params = {
-    v: versionApi,
-    client_id: clientId,
-    client_secret: clientSecret,
-    limit: 1
-  };
-  const queryString = formatQueryParamsPlaces(params);
-  const url = `https://api.foursquare.com/v2/venues/${venueID}/photos?${queryString}`;
-
-  fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    let img = data.response.photos.items[0];
-    let imgURL = `${img.prefix}300x300${img.suffix}`;
-    $(`#image-${venueID}`).attr("src", imgURL);
-    state.images[index] = imgURL;
-  })
-  .catch(error => {
-    console.log(`error`, error);
-  })
-}
-
-
-//formats geocoding parameters
-function formatGeoCodingParams(geoCodingParams) {
-  const geoCodingQueryItems = Object.keys(geoCodingParams)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(geoCodingParams[key])}`)
-  return geoCodingQueryItems.join('&');
-}
+/////////////////////////////////////////////////////////
 
 //Initiates map
 function initMap() {
@@ -145,67 +73,7 @@ function initMap() {
   bounds  = new google.maps.LatLngBounds();
 }
 
-//Format query parameters
-function formatQueryParamsPlaces(params) {
-  const queryvenues = Object.keys(params).map(
-    key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
-  );
-  return queryvenues.join("&");
-}
-
-//Creates side bar with search results
-function renderSidebarvenue(venue, index, imgURL) {
-  return `<section class="result js-result" data-index=${index}>
-  <a href=# class="js-venue-name">
-  <h3 class="venue-name">${venue.venue.name}</h3>
-  </a>
-  <div class="venue-img-container">
-  <img class="venue-img" id="image-${venue.venue.id}" src="${imgURL}" alt="image-of-venue">
-  </div>
-  <p class="address">${venue.venue.location.formattedAddress}</p>
-  </section>`;
-}
-
-//Set google map markers for venues
-function setvenueMarker(venue, index) {
-  var venueLocation = new google.maps.LatLng(
-    venue.venue.location.lat,
-    venue.venue.location.lng
-  );
-  var marker = new google.maps.Marker({
-    position: venueLocation,
-    title: venue.venue.name,
-    map: map
-  });
-  bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
-  state.markers[index] = marker;
-}
-
- function removeMarkers() {
-  $('.js-sidebar-submit').on('click', function(){
-    for (i = 0; i < state.markers.length; i++) {
-      state.markers[i].setMap(null);
-   }
-  })
-}
-
-//Displays search results 
-function displayResults() {
-  $(".container").hide();
-  $("#map-section").show();
-  $("#sidebar").show();
-  $("#show-hide").show();
-  bounds  = new google.maps.LatLngBounds();
-  let renderedvenues = state.venues.map((venue, index) => {
-    setvenueMarker(venue, index);
-    getVenueImage(venue.venue.id, index)
-    return renderSidebarvenue(venue, index);
-  });
-  map.fitBounds(bounds);
-  map.panToBounds(bounds);
-  map.setCenter(map.getCenter());
-  $("#search-results").html(renderedvenues);
-}
+/////////////////////////////////////////////////////////
 
 //makes sidebar hide and unhide on click of button
 function toggleSidebar() {
@@ -253,43 +121,43 @@ function markerHover() {
   });
 }
 
-//Displays modal when user clicks on venue
-function displaySelectedModal() {
-  $(".popup-content").html(`
-    <h3 class="popup-name">${state.selectedVenue.name}</h2>
-    <img class="venue-img" id="image-{venue.venue.id}" src="${state.imageURL}" alt="selected-venue-image">
-    <p class="popup-address">${state.selectedVenue.location.formattedAddress}</p>
-    <div id="cloud-background">
-      <h4 class="temperature-tittle">Weather</h4>
-      <p class="weather-description">${state.weatherJson.weather[0].main}</p>
-        <p class="temperature">${state.weatherJson.main.temp} &#8457;</p>
-    </div>
-    `);
-  $("#search-modal").show();
-}
-
-//gets lat and long from selected venue and formats address to lat and long
-const fetchSelectedVenue = () => {
-  const geoCodingParams = {
-    key: geoCodingClientKey,
-    address: state.selectedVenue.location.formattedAddress
-  };
-  
-  const geoCodingQueryString = formatGeoCodingParams(geoCodingParams)
-  const geoUrl = geoCodingUrl + '?' + geoCodingQueryString;
-
-  fetch(geoUrl)
-  .then(response => response.json())
-  .then(geoCodingResponseJson => {
-    state.location.lat = geoCodingResponseJson.results[0].geometry.location.lat;
-    state.location.lng = geoCodingResponseJson.results[0].geometry.location.lng;
-
-    
-    return fetchWeatherData();
+function removeMarkers() {
+  $('.js-sidebar-submit').on('click', function(){
+    for (i = 0; i < state.markers.length; i++) {
+      state.markers[i].setMap(null);
+   }
   })
-  .then(results => displaySelectedModal())
-  .catch(error => alert(error));
 }
+
+///////////////////////////////////////////////////////
+
+
+//listens for search submit on landing page
+const handleLandingPageFormSubmit = () => {
+  $("#landing-page-form").submit(event => {
+    event.preventDefault();
+    
+    state.query.place = $("#landing-place-query").val();
+    state.query.address = $("#landing-address-query").val();
+
+    fetchVenues();
+  });
+}
+
+
+//listens for search submit on side bar
+const handleResultsPageFormSubmit = () => {
+  $("#results-page-form").submit(event => {
+    event.preventDefault();
+    
+    state.query.place = $("#results-place-query").val();
+    state.query.address = $("#results-address-query").val();
+
+    fetchVenues();
+  });
+}
+
+
 
 const fetchVenues = (maxResults = 10) => {
   const params = {
@@ -315,6 +183,85 @@ const fetchVenues = (maxResults = 10) => {
     });
 }
 
+//Displays search results 
+function displayResults() {
+  $(".container").hide();
+  $("#map-section").show();
+  $("#sidebar").show();
+  $("#show-hide").show();
+  bounds  = new google.maps.LatLngBounds();
+  let renderedVenues = state.venues.map((venue, index) => {
+    setVenueMarker(venue, index);
+    getVenueImage(venue.venue.id, index)
+    return renderSidebarvenue(venue, index);
+  });
+  map.fitBounds(bounds);
+  map.panToBounds(bounds);
+  map.setCenter(map.getCenter());
+  $("#search-results").html(renderedVenues);
+}
+
+//Retrieves image for venue
+function getVenueImage(venueID, index) {
+  const params = {
+    v: versionApi,
+    client_id: clientId,
+    client_secret: clientSecret,
+    limit: 1
+  };
+  const queryString = formatQueryParamsPlaces(params);
+  const url = `https://api.foursquare.com/v2/venues/${venueID}/photos?${queryString}`;
+
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    let img = data.response.photos.items[0];
+    let imgURL = `${img.prefix}300x300${img.suffix}`;
+    $(`#image-${venueID}`).attr("src", imgURL);
+    state.images[index] = imgURL;
+  })
+  .catch(error => {
+    console.log(`error`, error);
+  })
+}
+
+//Format query parameters
+function formatQueryParamsPlaces(params) {
+  const queryvenues = Object.keys(params).map(
+    key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
+  );
+  return queryvenues.join("&");
+}
+
+//Creates side bar with search results
+function renderSidebarvenue(venue, index, imgURL) {
+  return `<section class="result js-result" data-index=${index}>
+  <a href=# class="js-venue-name">
+  <h3 class="venue-name">${venue.venue.name}</h3>
+  </a>
+  <div class="venue-img-container">
+  <img class="venue-img" id="image-${venue.venue.id}" src="${imgURL}" alt="image-of-venue">
+  </div>
+  <p class="address">${venue.venue.location.formattedAddress}</p>
+  </section>`;
+}
+
+//Set google map markers for venues
+function setVenueMarker(venue, index) {
+  var venueLocation = new google.maps.LatLng(
+    venue.venue.location.lat,
+    venue.venue.location.lng
+  );
+  var marker = new google.maps.Marker({
+    position: venueLocation,
+    title: venue.venue.name,
+    map: map
+  });
+  bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
+  state.markers[index] = marker;
+}
+
+
 //retrieves information on selected venue 
 const handleSearchResultsClick = () => {
   $("#search-results").on("click", ".result", function(event) {
@@ -329,42 +276,66 @@ const handleSearchResultsClick = () => {
   });
 }
 
-//listens for search submit on side bar
-const handleResultsPageFormSubmit = () => {
-  $("#results-page-form").submit(event => {
-    event.preventDefault();
+//gets lat and long from selected venue and formats address to lat and long
+const fetchSelectedVenue = () => {
+  const geoCodingParams = {
+    key: geoCodingClientKey,
+    address: state.selectedVenue.location.formattedAddress
+  };
+  
+  const geoCodingQueryString = formatGeoCodingParams(geoCodingParams)
+  const geoUrl = geoCodingUrl + '?' + geoCodingQueryString;
+
+  fetch(geoUrl)
+  .then(response => response.json())
+  .then(geoCodingResponseJson => {
+    state.location.lat = geoCodingResponseJson.results[0].geometry.location.lat;
+    state.location.lng = geoCodingResponseJson.results[0].geometry.location.lng;
+
     
-    state.query.place = $("#results-place-query").val();
-    state.query.address = $("#results-address-query").val();
-
-    fetchVenues();
-  });
+    return fetchWeatherData();
+  })
+  .then(results => displaySelectedModal())
+  .catch(error => alert(error));
 }
 
-//listens for search submit on landing page
-const handleLandingPageFormSubmit = () => {
-  $("#landing-page-form").submit(event => {
-    event.preventDefault();
-    
-    state.query.place = $("#landing-place-query").val();
-    state.query.address = $("#landing-address-query").val();
-
-    fetchVenues();
-  });
+//formats geocoding parameters
+function formatGeoCodingParams(geoCodingParams) {
+  const geoCodingQueryItems = Object.keys(geoCodingParams)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(geoCodingParams[key])}`)
+  return geoCodingQueryItems.join('&');
 }
 
-//binds event handlers
-const bindEventHandlers = () => {
-  handleLandingPageFormSubmit();
-  handleResultsPageFormSubmit();
-  handleSearchResultsClick();
-
-  toggleSidebar();
-  closeModal();
-  markerHover();
-  removeMarkers();
+function fetchWeatherData() {
+  return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${state.location.lat}&lon=${state.location.lng}&units=imperial&appid=c1030d35c644039241e355758547f2ec`) 
+  .then(response => response.json())
+  .then(responseJson => {
+    state.weatherJson = responseJson;
+  })
 }
 
-$(() => {
-  bindEventHandlers();  
-});
+//Displays modal when user clicks on venue
+function displaySelectedModal() {
+  $(".popup-content").html(`
+    <h3 class="popup-name">${state.selectedVenue.name}</h2>
+    <img class="venue-img" id="image-{venue.venue.id}" src="${state.imageURL}" alt="selected-venue-image">
+    <p class="popup-address">${state.selectedVenue.location.formattedAddress}</p>
+    <div id="cloud-background">
+      <h4 class="temperature-tittle">Weather</h4>
+      <p class="weather-description">${state.weatherJson.weather[0].main}</p>
+        <p class="temperature">${state.weatherJson.main.temp} &#8457;</p>
+    </div>
+    `);
+  $("#search-modal").show();
+}
+
+
+
+
+
+
+
+
+
+
+
