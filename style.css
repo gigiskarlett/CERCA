@@ -30,11 +30,7 @@
     margin: 0;
     padding: 0;
   }
-  
-  h1 {
-    font-size: 3em;
-  }
-  
+
   h1,
   h2 {
     margin: 0px;
@@ -84,7 +80,6 @@
     text-align: left;
   }
   
-  /************ results page ************/
   
   .form {
     text-align: center;
@@ -95,6 +90,7 @@
     font-size: 2em;
     padding-top: 3px;
     padding-bottom: 3px;
+    font-size: 3em;
   }
   
   .right,
@@ -396,6 +392,8 @@
   
     h1 {
       font-size: 2.5em;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
   
     /************ NAV ************/
