@@ -157,7 +157,7 @@
     overflow: scroll;
     /* this is going to toggle when you click on the button */
     width: calc(100% - 35px);
-    max-width: 200px;
+    max-width: 250px;
   }
   
   #map-section {
