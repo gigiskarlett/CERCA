@@ -34,7 +34,7 @@ let state = {
   weatherJson: {}
 };
 
-/********* Explain what this does *********/
+/********* Calls event handlers that are bind *********/
 
 $(() => {
   bindEventHandlers();
