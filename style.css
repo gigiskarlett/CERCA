@@ -1,540 +1,534 @@
 * {
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-    margin: 0;
-  }
-  
-  body {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 300;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Archivo", sans-serif;
-    font-weight: 500;
-  }
-  
-  /************ MAIN ************/
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  body,
-  html {
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 500;
+}
+
+/************ MAIN ************/
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  margin: 0px;
+}
+
+.fieldset {
+  border: none;
+}
+
+.header {
+  margin: 0;
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  border: solid 1px gainsboro;
+}
+
+.search-type,
+.search-address,
+.button {
+  height: 30px;
+  font-weight: bold;
+}
+
+.search-address {
+  width: 25%;
+}
+
+.container {
+  width: 100%;
+}
+
+.about-us {
+  width: 100%;
+  padding: 5%;
+}
+
+.img {
+  width: 35%;
+  border-radius: 10px;
+}
+
+.section-title {
+  width: 50%;
+  margin: 0;
+  font-size: 35px;
+  text-align: left;
+}
+
+.form {
+  text-align: center;
+  padding-top: 3%;
+}
+
+h1 {
+  font-size: 2em;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.right,
+.left {
+  float: none;
+  margin: auto;
+}
+
+.mobile {
+  border-radius: 30px;
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img,
+.text {
+  padding: 5%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 22px;
+}
+
+.landing-img {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 3, 0))
+      fixed,
+    url("https://image.ibb.co/nBhnQA/pexels-photo-1051075-2.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+}
+
+h2 {
+  margin-left: 2%;
+  margin-right: 2%;
+  color: white;
+  text-align: center;
+  font-size: 19px;
+  padding-top: 10%;
+}
+
+.button {
+  width: 90px;
+  margin-top: 15px;
+}
+
+.text {
+  padding: 20px 0 0 0;
+  margin: 0;
+  font-size: 15px;
+  display: inline;
+  text-align: center;
+}
+
+#sidebar {
+  background-color: #f7f7f7;
+  position: fixed;
+  top: 45px;
+  bottom: 0px;
+  left: 0px;
+  overflow: scroll;
+  /* this is going to toggle when you click on the button */
+  width: calc(100% - 35px);
+  max-width: 250px;
+}
+
+#map-section {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 45px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.search-type,
+.search-address {
+  background-color: white;
+  border-radius: 5px;
+  border: #1beabd 1px solid;
+  padding-left: 1%;
+  height: 25px;
+  font-weight: bold;
+  width: 40%;
+  margin-left: 10px;
+  font-size: 7px;
+  /*box-shadow: 4px 4px 9px 0px grey*/
+}
+
+.search-type-sidebar,
+.search-address-sidebar {
+  background-color: white;
+  border-radius: 5px;
+  border: #1beabd 1px solid;
+  padding-left: 1%;
+  height: 25px;
+  font-weight: bold;
+  width: 40%;
+  margin-left: 10px;
+  font-size: 6px;
+  /*box-shadow: 4px 4px 9px 0px grey*/
+}
+
+#show-hide {
+  background-color: whitesmoke;
+  box-shadow: 4px 4px 9px 0px grey;
+  width: 20px;
+  position: fixed;
+  top: 45px;
+}
+
+.results-search-tittle {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  padding-top: 10%;
+}
+
+.results-search-background {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 3, 0))
+      fixed,
+    url("https://image.ibb.co/nBhnQA/pexels-photo-1051075-2.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+}
+
+#search-results {
+  position: absolute;
+}
+
+.description-of-image {
+  padding-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 4%;
+}
+
+.last-container {
+  padding-bottom: 10%;
+}
+
+.form-sidebar {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.venue-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  width: 150px;
+}
+
+.venue-name {
+  text-align: center;
+  padding-top: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 20px;
+}
+
+.address {
+  text-align: center;
+  display: block;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 11px;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
+
+/*link styling*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.result:hover,
+.result:active {
+  box-shadow: 4px 4px 9px 0px grey;
+}
+
+.popup-overlay {
+  background-color: rgba(0, 0, 0, 0.253);
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  z-index: 2;
+}
+
+.search-modal {
+  width: 100%;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 2%;
+  width: 80%;
+  margin: 10%;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 3;
+  top: 20%;
+}
+
+h4,
+.popup-name {
+  text-align: center;
+}
+
+.popup-name {
+  padding-bottom: 10px;
+  color: #383a3b;
+}
+
+.popup-address {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #383a3b;
+}
+
+.details {
+  text-align: center;
+  margin-left: 4%;
+  margin-right: 4%;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 8px;
+}
+
+.temperature {
+  font-weight: bold;
+  position: relative;
+  top: 18%;
+  left: -8px;
+  font-size: 15px;
+  text-align: center;
+  color: #383a3b;
+}
+
+.temperature-tittle {
+  position: relative;
+  top: 18%;
+  left: -8px;
+  font-size: 18px;
+  text-align: center;
+  color: #383a3b;
+}
+
+.weather-description {
+  font-weight: bold;
+  position: relative;
+  top: 16%;
+  text-align: center;
+  font-size: 15px;
+  left: -8px;
+  color: #383a3b;
+}
+
+.js-error-message {
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1%;
+}
+
+/************  media queries ************/
+@media (min-width: 850px) {
+  /************ header ************/
+  .header {
+    height: 50px;
   }
 
-  h1,
-  h2 {
-    margin: 0px;
-  }
-  
-  .fieldset {
-    border: none;
-  }
-  
-  .header {
-    margin: 0;
-    width: 100%;
-    height: 45px;
-    text-align: center;
-    border: solid 1px gainsboro;
-  }
-  
-  .search-type,
-  .search-address,
-  .button {
-    height: 30px;
-    font-weight: bold;
-  }
-  
-  .search-address {
-    width: 25%;
-  }
-  
-  .container {
-    width: 100%;
-  }
-  
-  .about-us {
-    width: 100%;
-    padding: 5%;
-  }
-  
-  .img {
-    width: 35%;
-    border-radius: 10px;
-  }
-  
-  .section-title {
-    width: 50%;
-    margin: 0;
-    font-size: 35px;
-    text-align: left;
-  }
-  
-  
-  .form {
-    text-align: center;
-    padding-top: 3%;
-  }
-  
   h1 {
-    font-size: 2em;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    font-size: 2.5em;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
-  
-  .right,
-  .left {
-    float: none;
-    margin: auto;
-  }
-  
-  .mobile {
-    border-radius: 30px;
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .img,
-  .text {
-    padding: 5%;
-  }
-  
-  .section-title {
-    text-align: center;
-    font-size: 22px;
-  }
-  
+
+  /************ NAV ************/
   .landing-img {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 3, 0))
-        fixed,
-      url("https://image.ibb.co/nBhnQA/pexels-photo-1051075-2.jpg");
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 300px;
-    background-size: cover;
+    height: 600px;
   }
-  
-  h2 {
-    margin-left: 2%;
-    margin-right: 2%;
-    color: white;
-    text-align: center;
-    font-size: 19px;
-    padding-top: 10%;
-  }
-  
-  .button {
-    width: 90px;
-    margin-top: 15px;
-  }
-  
-  .text {
-    padding: 20px 0 0 0;
-    margin: 0;
-    font-size: 15px;
-    display: inline;
-    text-align: center;
-  }
-  
-  #sidebar {
-    background-color: #f7f7f7;
-    position: fixed;
-    top: 45px;
-    bottom: 0px;
-    left: 0px;
-    overflow: scroll;
-    /* this is going to toggle when you click on the button */
-    width: calc(100% - 35px);
-    max-width: 250px;
-  }
-  
-  #map-section {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 45px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-  }
-  
-  #map {
-    width: 100%;
-    height: 100%;
-  }
-  
+
   .search-type,
   .search-address {
-    background-color: white;
-    border-radius: 5px;
-    border: #1beabd 1px solid;
-    padding-left: 1%;
-    height: 25px;
-    font-weight: bold;
-    width: 40%;
-    margin-left: 10px;
-    font-size: 7px;
-    /*box-shadow: 4px 4px 9px 0px grey*/
+    height: 35px;
+    width: 30%;
+    font-size: 12px;
   }
-  
-  .search-type-sidebar,
-  .search-address-sidebar {
-    background-color: white;
-    border-radius: 5px;
-    border: #1beabd 1px solid;
-    padding-left: 1%;
-    height: 25px;
-    font-weight: bold;
-    width: 40%;
-    margin-left: 10px;
-    font-size: 6px;
-    /*box-shadow: 4px 4px 9px 0px grey*/
+
+  h2 {
+    font-size: 3em;
+    padding-top: 16%;
   }
-  
-  #show-hide {
-    background-color: whitesmoke;
-    box-shadow: 4px 4px 9px 0px grey;
-    width: 20px;
-    position: fixed;
-    top: 45px;
-  }
-  
-  .results-search-tittle {
+
+  h4,
+  .popup-name {
     text-align: center;
-    color: white;
-    font-size: 18px;
-    padding-top: 10%;
   }
-  
-  .results-search-background {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 3, 0))
-        fixed,
-      url("https://image.ibb.co/nBhnQA/pexels-photo-1051075-2.jpg");
-    background-repeat: no-repeat;
-    width: 100%;
-    background-size: cover;
+
+  .about-us {
+    padding: 0px;
   }
-  
-  #search-results {
-    position: absolute;
+
+  .img {
+    width: 50%;
+    border-radius: 90px;
   }
-  
-  .description-of-image {
-    padding-bottom: 10px;
+
+  .text {
+    width: 50%;
+    font-size: 26px;
+  }
+
+  .section-title {
+    padding: 60px 0 0 30px;
+    font-size: 38px;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .section-container {
     margin-left: 5%;
     margin-right: 5%;
-    padding-top: 4%;
   }
-  
-  .last-container {
-    padding-bottom: 10%;
+  /**********results-search**************/
+
+  #sidebar {
+    max-width: 400px;
+    top: 50px;
   }
-  
-  .form-sidebar {
+
+  .search-type-sidebar,
+  .search-address-sidebar {
+    height: 35px;
+    width: 42%;
+    font-size: 10px;
+  }
+
+  .results-search-tittle {
+    font-size: 30px;
+  }
+
+  .result {
+    margin-bottom: 10px;
+  }
+
+  .popup-address {
     text-align: center;
-    padding-top: 10%;
+    font-size: 15px;
+    padding-bottom: 20px;
   }
-  
+
+  .popup-name {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .popup-content {
+    left: 10%;
+    top: 0px;
+    width: 60%;
+    height: 500px;
+  }
+
+  #show-hide {
+    width: 30px;
+    height: 30px;
+    top: 50px;
+  }
+
   .venue-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 20px;
-    width: 150px;
+    width: 250px;
   }
-  
-  .venue-name {
-    text-align: center;
-    padding-top: 5%;
-    margin-left: 3%;
-    margin-right: 3%;
+
+  .details {
+    font-size: 18px;
+    padding-top: 10px;
+  }
+
+  .temperature {
+    left: -8px;
     font-size: 20px;
   }
-  
-  .address {
-    text-align: center;
-    display: block;
-    margin-left: 3%;
-    margin-right: 3%;
-    font-size: 11px;
-    margin-bottom: 5%;
-    font-weight: bold;
-  }
-  
-  /*link styling*/
-  a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .result:hover,
-  .result:active {
-    box-shadow: 4px 4px 9px 0px grey;
-  }
-  
-  .popup-overlay {
-    background-color: rgba(0, 0, 0, 0.253);
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    z-index: 2;
-  }
-  
-  .search-modal {
-    width: 100%;
-  }
-  
-  .popup-content {
-    background-color: white;
-    padding: 2%;
-    width: 80%;
-    margin: 10%;
-    border-radius: 10px;
-    position: fixed;
-    z-index: 3;
-    top: 20%;
-  }
-  
-  h4,
-  .popup-name {
-    text-align: center;
-  }
-  
-  .popup-name {
-    padding-bottom: 10px;
-    color:  #383A3B;
-  }
-  
-  
-  .popup-address {
-    padding-top: 10px;
-    text-align: center;
-    font-size: 12px;
-    padding-bottom: 10px;
-    font-weight: bold;
-    color: #383A3B;
-  }
-  
-  .details {
-    text-align: center;
-    margin-left: 4%;
-    margin-right: 4%;
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    padding-top: 8px;
-  }
-  
-  .temperature {
-    font-weight: bold;
-    position: relative;
-    top: 18%;
-    left: -8px;
-    font-size: 15px;
-    text-align: center; 
-    color: #383A3B;
-  }
-  
-  .temperature-tittle {
-    position: relative;
-    top: 18%;
-    left: -8px;
-    font-size: 18px;
-    text-align: center; 
-    color: #383A3B;
-  }
-  
+
   .weather-description {
-    font-weight: bold;
-    position: relative;
-    top: 16%;
-    text-align: center;
-    font-size: 15px;
-    left: -8px;
-    color: #383A3B;
+    font-size: 20px;
   }
-  
+
+  .temperature-tittle {
+    font-size: 22px;
+  }
+
   .js-error-message {
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 1%;
+    font-size: 15px;
   }
 
-
-  
-  /************  media queries ************/
-  @media (min-width: 850px) {
-    /************ header ************/
-    .header {
-      height: 50px;
-    }
-  
-    h1 {
-      font-size: 2.5em;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  
-    /************ NAV ************/
-    .landing-img {
-      height: 600px;
-    }
-  
-    .search-type,
-    .search-address {
-      height: 35px;
-      width: 30%;
-      font-size: 12px;
-    }
-  
-    h2 {
-      font-size: 3em;
-      padding-top: 16%;
-    }
-  
-    h4,
-    .popup-name {
-      text-align: center;
-    }
-  
-    .about-us {
-      padding: 0px;
-    }
-  
-    .img {
-      width: 50%;
-      border-radius: 90px;
-    }
-  
-    .text {
-      width: 50%;
-      font-size: 26px;
-    }
-  
-    .section-title {
-      padding: 60px 0 0 30px;
-      font-size: 38px;
-    }
-  
-    .right {
-      float: right;
-    }
-  
-    .left {
-      float: left;
-    }
-  
-    .clear {
-      clear: both;
-    }
-  
-    .section-container {
-      margin-left: 5%;
-      margin-right: 5%;
-    }
-    /**********results-search**************/
-  
-    #sidebar {
-      max-width: 400px;
-      top: 50px;
-    }
-  
-    .search-type-sidebar,
-    .search-address-sidebar {
-      height: 35px;
-      width: 42%;
-      font-size: 10px;
-    }
-  
-    .results-search-tittle {
-      font-size: 30px;
-    }
-  
-    .result {
-      margin-bottom: 10px;
-    }
-  
-    .popup-address {
-      text-align: center;
-      font-size: 15px;
-      padding-bottom: 20px;
-    }
-  
-    .popup-name {
-      text-align: center;
-      font-size: 30px;
-    }
-  
-    .popup-content {
-      left: 10%;
-      top: 0px;
-      width: 60%;
-      height: 500px;
-    }
-  
-    #show-hide {
-      width: 30px;
-      height: 30px;
-      top: 50px;
-    }
-  
-    .venue-img {
-      width: 250px;
-    }
-  
-    .details {
-      font-size: 18px;
-      padding-top: 10px;
-    }
-  
-    .temperature {
-      left: -8px;
-      font-size: 20px;
-    }
-  
-    .weather-description {
-      font-size: 20px;
-    }
-  
-    .temperature-tittle {
-      font-size: 22px;
-    }
-  
-    .js-error-message {
-      font-size: 15px;
-    }
-  
-    .form {
-      padding-top: 0%;
-    }
-
-    #results-page-form {
-        padding: 15px;
-    }
-
-    #map-section {
-      top: 50px;
-    }
+  .form {
+    padding-top: 0%;
   }
 
-  
+  #results-page-form {
+    padding: 15px;
+  }
+
+  #map-section {
+    top: 50px;
+  }
+}

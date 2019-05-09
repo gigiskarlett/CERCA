@@ -1,13 +1,11 @@
 <h1>CERCA</h1>
 
 <p>A helpful location-based search application that provides users with the top ten most popular destinations and their current weather temperatures. <p>
-  
+
 
 <h2>Demo</h2>
 <a href="https://gigiskarlett.github.io/CERCA/">Live Demo</a>
 
-
-  
 <h2>Screenshots</h2>
 <h3> Landing Page:</h3>
 
@@ -26,4 +24,3 @@
 <p>CSS</p>
 <p>JavaScript</p>
 <p>Jquery</p>
-
