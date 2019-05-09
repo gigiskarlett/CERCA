@@ -209,6 +209,8 @@ h2 {
   width: 20px;
   position: fixed;
   top: 45px;
+  z-index: 100;
+  left: 250px;
 }
 
 .results-search-tittle {

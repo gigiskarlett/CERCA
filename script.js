@@ -1,14 +1,14 @@
-//foursquare venue
+// foursquare venue
 const clientSecret = "ODC4U4DJV14HN0ZV4HPYJ3YUYPBMN3YCL40JS0C0DX3NPAZC";
 const versionApi = "20181101";
 const clientId = "JJKCIBIBQ2L2ACKIQ2SFIIG4YFXU1UAJKSGMGUCKNYEO3TCS";
 const venueSearchURL = "https://api.foursquare.com/v2/venues/explore";
 
-//google geocoding
+// google geocoding
 const geoCodingUrl = `https://maps.googleapis.com/maps/api/geocode/json`;
 const geoCodingClientKey = `AIzaSyC7B7GvOsWcm329Cf0Yl7Li7tW0u5wUlxM`;
 
-//Weather app
+// Weather app
 const appid = "c1030d35c644039241e355758547f2ec";
 const openWeatherUrl = "https://api.openweathermap.org/data/2.5/weather";
 const unit = "imperial";
@@ -34,13 +34,13 @@ let state = {
   weatherJson: {}
 };
 
-/////////////////////////////////////////////////////////
+/********* Explain what this does *********/
 
 $(() => {
   bindEventHandlers();
 });
 
-//binds event handlers
+// binds event handlers
 const bindEventHandlers = () => {
   handleLandingPageFormSubmit();
   handleResultsPageFormSubmit();
@@ -52,9 +52,9 @@ const bindEventHandlers = () => {
   removeMarkers();
 };
 
-/////////////////////////////////////////////////////////
+/********* Explain what this does *********/
 
-//Initiates map
+// Initiates map
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 34.0522, lng: -118.2437 },
@@ -73,30 +73,32 @@ function initMap() {
   bounds = new google.maps.LatLngBounds();
 }
 
-/////////////////////////////////////////////////////////
+/********* Explain what this does *********/
 
-//makes sidebar hide and unhide on click of button
+// makes sidebar hide and unhide on click of button
 function toggleSidebar() {
   $("#show-hide").click(function() {
     var currentStyle = $("#sidebar").css("width");
     if (currentStyle === "0px") {
       $("#sidebar").css("width", "calc(100% - 35px)");
       $("#search-results", ".results-search-background").show();
+      $("#show-hide").css("left", "250px");
     } else {
       $("#sidebar").css("width", "0");
       $("#search-results", ".results-search-background").hide();
+      $("#show-hide").css("left", "0");
     }
   });
 }
 
-//closes modal
+// closes modal
 function closeModal() {
   $(".popup-overlay").click(function(event) {
     $("#search-modal").hide();
   });
 }
 
-//adds animation when hovering over venue on sidebar
+// adds animation when hovering over venue on sidebar
 function markerHover() {
   $("#search-results").on("mouseover", ".result", function(e) {
     var index = $(this).attr("data-index");
@@ -129,9 +131,9 @@ function removeMarkers() {
   });
 }
 
-///////////////////////////////////////////////////////
+/********* Explain what this does *********/
 
-//listens for search submit on landing page
+// listens for search submit on landing page
 const handleLandingPageFormSubmit = () => {
   $("#landing-page-form").submit(event => {
     event.preventDefault();
@@ -143,7 +145,7 @@ const handleLandingPageFormSubmit = () => {
   });
 };
 
-//listens for search submit on side bar
+// listens for search submit on side bar
 const handleResultsPageFormSubmit = () => {
   $("#results-page-form").submit(event => {
     event.preventDefault();
@@ -181,7 +183,7 @@ const fetchVenues = (maxResults = 10) => {
     });
 };
 
-//Displays search results
+// Displays search results
 function displayResults() {
   $(".container").hide();
   $("#map-section").show();
@@ -199,7 +201,7 @@ function displayResults() {
   $("#search-results").html(renderedVenues);
 }
 
-//Retrieves image for venue
+// Retrieves image for venue
 function getVenueImage(venueID, index) {
   const params = {
     v: versionApi,
@@ -223,7 +225,7 @@ function getVenueImage(venueID, index) {
     });
 }
 
-//Format query parameters
+// Format query parameters
 function formatQueryParamsPlaces(params) {
   const queryvenues = Object.keys(params).map(
     key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
@@ -231,7 +233,7 @@ function formatQueryParamsPlaces(params) {
   return queryvenues.join("&");
 }
 
-//Creates side bar with search results
+// Creates side bar with search results
 function renderSidebarvenue(venue, index, imgURL) {
   return `<section class="result js-result" data-index=${index}>
   <a href=# class="js-venue-name">
@@ -246,7 +248,7 @@ function renderSidebarvenue(venue, index, imgURL) {
   </section>`;
 }
 
-//Set google map markers for venues
+// Set google map markers for venues
 function setVenueMarker(venue, index) {
   var venueLocation = new google.maps.LatLng(
     venue.venue.location.lat,
@@ -263,7 +265,7 @@ function setVenueMarker(venue, index) {
   state.markers[index] = marker;
 }
 
-//retrieves information on selected venue
+// retrieves information on selected venue
 const handleSearchResultsClick = () => {
   $("#search-results").on("click", ".result", function(event) {
     event.preventDefault();
@@ -277,7 +279,7 @@ const handleSearchResultsClick = () => {
   });
 };
 
-//gets lat and long from selected venue and formats address to lat and long
+// gets lat and long from selected venue and formats address to lat and long
 const fetchSelectedVenue = () => {
   const geoCodingParams = {
     key: geoCodingClientKey,
@@ -301,7 +303,7 @@ const fetchSelectedVenue = () => {
     .catch(error => alert(error));
 };
 
-//formats geocoding parameters
+// formats geocoding parameters
 function formatGeoCodingParams(geoCodingParams) {
   const geoCodingQueryItems = Object.keys(geoCodingParams).map(
     key =>
@@ -324,7 +326,7 @@ function fetchWeatherData() {
     });
 }
 
-//Displays modal when user clicks on venue
+// Displays modal when user clicks on venue
 function displaySelectedModal() {
   $(".popup-content").html(`
     <h3 class="popup-name">${state.selectedVenue.name}</h2>
