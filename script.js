@@ -82,7 +82,7 @@ function toggleSidebar() {
     if (currentStyle === "0px") {
       $("#sidebar").css("width", "calc(100% - 35px)");
       $("#search-results", ".results-search-background").show();
-      $("#show-hide").css("left", "400px");
+      $("#show-hide").css("left", "0");
     } else {
       $("#sidebar").css("width", "0");
       $("#search-results", ".results-search-background").hide();
