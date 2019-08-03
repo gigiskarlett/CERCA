@@ -154,6 +154,7 @@ h2 {
   bottom: 0px;
   left: 0px;
   overflow: scroll;
+   z-index: 1;
   /* this is going to toggle when you click on the button */
   width: calc(100% - 35px);
   max-width: 250px;
@@ -211,6 +212,7 @@ h2 {
   top: 45px;
   z-index: 100;
   /* left: 250px; */
+  z-index: 2;
 }
 
 .results-search-tittle {
